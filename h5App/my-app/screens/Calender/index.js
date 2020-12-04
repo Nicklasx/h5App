@@ -61,10 +61,13 @@ onDateChange(date, type) {
                 <Text>SELECTED START DATE:{ startDate }</Text>
                 <Text>SELECTED END DATE:{ endDate }</Text>
             </View>
+            <View style={styles.bookButton}>
                 <Button
-                    title="Book n"
+                    title="Book"
                     onPress={() => this.props.navigation.navigate('Info')}
                 />
+            </View>
+                
             </View>
 
         );
@@ -77,5 +80,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    bookButton: {
+        width: 75,
+        height: 44,
     },
 });

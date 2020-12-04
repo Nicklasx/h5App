@@ -16,6 +16,18 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         backgroundColor: '#e8e8e8'
         },
+    loginButton: {
+        width: 100,
+        height: 44,
+    },
+    signUpButton: {
+        width: 125,
+        height: 44,
+    },
+    forgetButton: {
+        width: 150,
+        height: 44,
+    },
 });
 
 const SignInScreen = ({ onSignIn, navigation }) => {
@@ -34,30 +46,40 @@ const SignInScreen = ({ onSignIn, navigation }) => {
             <Text>Sign In</Text>
             <TextInput
                 name='username'
+                autoCapitalize = 'none'
                 style={styles.input}
                 onChangeText={(username) => setUsername(username)}
                 placeholder='Username'
             />
             <TextInput
                 name='password'
+                autoCapitalize = 'none'
+                secureTextEntry={true}
                 style={styles.input}
                 onChangeText={(password) => setPassword(password)}
                 placeholder='Password'
             />
             
-            <Button title="Sign In n" onPress={test} />
+            <View style={styles.loginButton}>
+            <Button title="Sign In" onPress={test} />
+            </View>
 
             <Text>OR</Text>
 
+            <View style={styles.signUpButton}>
             <Button
-                title="Go to Sign Up n"
+                title="Go to Sign Up"
                 onPress={() => navigation.navigate('Sign Up')}
             />
-
-            <Button
-                title="Go to Password Forget n"
-                onPress={() => navigation.navigate('Password Forget')}
-            />
+            </View>
+            
+            <View style={styles.forgetButton}>
+                <Button
+                    title="Go to Password Forget"
+                    onPress={() => navigation.navigate('Password Forget')}
+                />
+            </View>
+            
         </View>
     );
 };

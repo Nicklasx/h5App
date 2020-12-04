@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, View, TextInput } from 'react-native';
+import { Button, View, TextInput, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   NavigationContainer,
@@ -19,6 +20,22 @@ import InfoScreen from './screens/Info';
 
 const Drawer = createDrawerNavigator();
 
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+  menuButton: {
+      width: 65,
+      height: 44,
+  },
+  signOutButton: {
+    width: 100,
+    height: 44,
+  }
+  });
+
 const HomeDrawer = () => {
   return (
     <Drawer.Navigator>
@@ -37,21 +54,26 @@ const RootStack = createStackNavigator();
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-  
+  AsyncStorage.getItem('login')
+    .then( function (value) {
+      setIsAuthenticated(JSON.parse(value));
+    })
   const handleSignIn = () => {
     // TODO implement real sign in mechanism
+    AsyncStorage.setItem('login', JSON.stringify(true))
+    
     setIsAuthenticated(true);
   };
 
   const handleSignOut = () => {
     // TODO implement real sign out mechanism
-
+    AsyncStorage.setItem('login', JSON.stringify(false))
     setIsAuthenticated(false);
   };
 
   const handleSignUp = () => {
     // TODO implement real sign up mechanism
-
+    
     setIsAuthenticated(true);
   };
 
@@ -65,15 +87,20 @@ const App = () => {
           options={({ route, navigation }) => ({
             headerTitle: getFocusedRouteNameFromRoute(route),
             headerLeft: () => (
-              <Button
+              <View style={styles.menuButton}>
+                <Button
                 onPress={() =>
                   navigation.dispatch(DrawerActions.toggleDrawer())
                 }
-                title="Menu n"
+                title="Menu"
               />
+              </View>
+              
             ),
             headerRight: () => (
-              <Button onPress={handleSignOut} title="Sign Out n" />
+              <View style={styles.signOutButton}>
+                <Button onPress={handleSignOut} title="Sign Out" />
+              </View>
             ),
           })}
         />

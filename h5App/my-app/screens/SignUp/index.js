@@ -7,13 +7,20 @@ container: {
     alignItems: 'center',
     justifyContent: 'center',
 },
+signUpButton: {
+    width: 100,
+    height: 44,
+},
 });
 
 const SignUpScreen = ({ onSignUp }) => {
 return (
     <View style={styles.container}>
     <Text>Public Sign Up Screen</Text>
-        <Button title="Sign Up n" onPress={onSignUp} />
+        <View style={styles.signUpButton}>
+            <Button title="Sign Up" onPress={onSignUp} />
+        </View>
+        
     </View>
 );
 };
