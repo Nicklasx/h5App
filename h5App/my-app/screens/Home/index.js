@@ -10,7 +10,8 @@ import {
   Text, 
   ImageBackground,
   Image,
-  ImageStore
+  ImageStore,
+  ScrollView
 } from 'react-native';
 
 var { height } = Dimensions.get('window');
@@ -22,39 +23,87 @@ export default class AlignItems extends Component {
   render() {
     return (
     <View style={styles.wrapper}>
-        <View style={styles.container2}></View>
+      <View style={styles.container}>
+      <ScrollView style={[styles.scrollView]} >
+    
+    <Text style={[styles.text]}> 
+      Lorem ipsum dolor sit amet, 
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+      commodo consequat.  Lorem ipsum dolor sit amet, 
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+      Ut enim ad minim veniam
+          
+    </Text>
+    </ScrollView>
+        <TouchableOpacity style={[styles.box3]}  
+          onPress={() => Alert.alert('Simple Button pressed') }>
 
-          <View style={styles.container}>
-            
-              
-              <View style={[styles.box, styles.box1, styles.tryhardbox]}></View>
-              
-                <Text style={[styles.tryhardbox]} style={{ flex: 6, flexWrap: 'wrap'}}> Lorem ipsum dolor sit amet, 
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
-                  commodo consequat.  
-              
-                </Text>
-              
-                <View style={[styles.box3]}>
-                
-                  <TouchableOpacity style={[styles.box3, styles.tryhardbox]}  
-                                  onPress={() => Alert.alert('Simple Button pressed') }>
-
-                    <ImageModal
-                      resizeMode="contain"
-                      imageBackgroundColor="#000000"
-                      source={require('./Images/logo.png')} style={[styles.box3]}
-                    />
+          <ImageModal
+            //justifyContent= 'center'
+            //alignItems= 'stretch'
+            resizeMode= 'contain'
+            //flexDirection= 'row'
+            //resizeMode="contain"
+            imageBackgroundColor="#000000"
+            source={require('./Images/logo.png')} style={[styles.box3]}
+          />
                   
                   
-                  </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.container}>
+      <ScrollView style={[styles.scrollView]} >
+    
+    <Text style={[styles.text]}> 
+      Lorem ipsum dolor sit amet, 
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+      commodo consequat.  Lorem ipsum dolor sit amet, 
+      consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+      Ut enim ad minim veniam
+          
+    </Text>
+    </ScrollView>
+        <TouchableOpacity style={[styles.box3]}  
+          onPress={() => Alert.alert('Simple Button pressed') }>
+
+          <ImageModal
+            resizeMode="contain"
+            imageBackgroundColor="#000000"
+            source={require('./Images/logo.png')} style={[styles.box3]}
+          />
+                  
+                  
+        </TouchableOpacity>
+      </View>
+      <View style={styles.container}>
+      <ScrollView style={[styles.scrollView]} >
+    
+        <Text style={[styles.text]}> 
+          Lorem ipsum dolor sit amet, 
+          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+          commodo consequat.  Lorem ipsum dolor sit amet, 
+          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          Ut enim ad minim veniam
               
-                </View>
-            
-          </View>
-         
-        </View>
+        </Text>
+        </ScrollView>
+        <TouchableOpacity style={[styles.box3]}  
+          onPress={() => Alert.alert('Simple Button pressed') }>
+
+          <ImageModal
+            resizeMode="contain"
+            imageBackgroundColor="#000000"
+            source={require('./Images/logo.png')} style={[styles.box3]}
+          />
+                  
+                  
+        </TouchableOpacity>
+      </View>
+    </View>
       );
     }
   }
@@ -77,40 +126,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#2196F3',
     marginBottom: 10
   },
-  container2: {
-    flex: .2,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-start' //replace with flex-end or center
-  },
-
-  text: {
-    color: "white",
-    fontSize: 42,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#000000a0"
-  },
-  box: {
-    width: 110,
-    height: 100
-  },
-  box1: {
-    backgroundColor: '#2196F3',
-    flex: .5,
-    flexDirection: 'row'
-  },
-  box2: {
-    backgroundColor: '#8BC34A'
-  },
   box3: {
     width: 110,
-    height: 100
+    height: 100,
+    flexWrap: 'wrap',
+    marginTop: 18,
+    flex: 2.5
+    
     
   },
-  tryhardbox:{
-   padding: 10
-  }
+  text: {
+    flex: 5, 
+    flexWrap: 'wrap',
+    margin:8
+  },
+  scrollView: {
+    marginHorizontal: 20,
+    width: 160
+  },
+  
 });
  
 //export default HomeScreen;
