@@ -1,10 +1,8 @@
 const http = require('http')
-const qs = require('querystring') 
 const url = require('url') 
 
 const Users = require('./users');
 
-const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {

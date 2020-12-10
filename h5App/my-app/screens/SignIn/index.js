@@ -34,11 +34,24 @@ const SignInScreen = ({ onSignIn, navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const test = () => {
-        if(username != "test" && password != "test") {
-            Toast.show("wrong username or password");
-        } else {
-            onSignIn();
-        }
+        fetch('http://192.168.0.177:3000/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'function': 'login'
+            },
+            body: JSON.stringify({
+                "username": username,
+                "password": password})
+            }).then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson)
+                if(responseJson.status === 'succes') {
+                    onSignIn();
+                } else {
+                    Toast.show("Wrong username or password")
+                }
+            });
     }
     return (
         <View style={styles.container}>

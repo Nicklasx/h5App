@@ -41,6 +41,8 @@ const SignUpScreen = ({ onSignUp }) => {
                     "password": password,
                 }),
             });
+
+            Toast.show("You are logged in")
             onSignUp();
         }
     }
