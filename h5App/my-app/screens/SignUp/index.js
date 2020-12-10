@@ -30,6 +30,17 @@ const SignUpScreen = ({ onSignUp }) => {
         if(confPassword != password) {
             Toast.show("Password did not match");
         } else {
+            fetch('http://192.168.0.177:3000/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'function': 'signUp',
+                },
+                body: JSON.stringify({
+                    "username": username,
+                    "password": password,
+                }),
+            });
             onSignUp();
         }
     }
