@@ -11,7 +11,11 @@ const server = http.createServer((req, res) => {
     if (req.method === 'GET') {
         return handleGetReq(req, res)
     } else if (req.method === 'POST') {
-        return handlePostReq(req, res)
+        if(req.headers['function'] === 'login') {
+            return handleLogin(req, res)
+        } else if (req.headers['function'] === 'signUp') {
+            return handlePostReq(req, res)
+        }
     }
 })
 
@@ -22,6 +26,49 @@ function handleGetReq(req, res) {
     }
     res.setHeader('Content-Type', 'application/json;charset=utf-8');
     return res.end(JSON.stringify(Users.getUsers()))
+}
+
+
+function handleLogin(req, res) {
+
+    const size = parseInt(req.headers['content-length'], 10)
+    const buffer = Buffer.allocUnsafe(size)
+    if(buffer == "") {
+        handleError(res, 404);
+    }
+    else {
+        var pos = 0
+        const { pathname } = url.parse(req.url)
+        if (pathname !== '/user') {
+            return handleError(res, 404)
+        }
+
+        req 
+        .on('data', (chunk) => { 
+            const offset = pos + chunk.length 
+            if (offset > size) { 
+                reject(413, 'Too Large', res) 
+                return 
+            } 
+            chunk.copy(buffer, pos) 
+            pos = offset 
+            }) 
+            .on('end', () => { 
+            if (pos !== size) { 
+                reject(400, 'Bad Request', res) 
+                return 
+            }
+            const data = JSON.parse(buffer.toString())
+
+            var username = data.username
+            var password = data.password
+            var answer = Users.login(username, password)
+            console.log('User login: ', data) 
+            res.setHeader('Content-Type', 'application/json;charset=utf-8');
+            res.end(JSON.stringify({status: answer}))
+        })
+    }
+        
 }
 
 function handlePostReq(req, res) {
