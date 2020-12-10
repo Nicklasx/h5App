@@ -73,7 +73,7 @@ const App = () => {
 
   const handleSignUp = () => {
     // TODO implement real sign up mechanism
-    
+    AsyncStorage.setItem('login', JSON.stringify(true))
     setIsAuthenticated(true);
   };
 
